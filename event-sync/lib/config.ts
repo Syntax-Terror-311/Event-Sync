@@ -1,6 +1,6 @@
 const requiredEnvVars = {
   JWT_SECRET: process.env.JWT_SECRET,
-  API_BASE_URL: process.env.VITE_API_BASE_URL
+  API_BASE_URL: process.env.NEXT_API_BASE_URL
 } as const;
 
 checkEnvVariables();
@@ -35,4 +35,4 @@ export function getJwtSecret(): string {
   return secret;
 }
 
-export const API_BASE_URL = process.env.VITE_API_BASE_URL;
+export const API_BASE_URL = process.env.NEXT_API_BASE_URL;
