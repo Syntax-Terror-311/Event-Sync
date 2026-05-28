@@ -1,9 +1,9 @@
 import bcrypt from "bcrypt";
-import { db } from "@/lib/db";
+import { db } from "../lib/db";
 
 async function main() {
     console.log("🌱 Début du seeding...");
-    
+
     await db.question.deleteMany({});
     await db.session.deleteMany({});
     await db.event.deleteMany({});
