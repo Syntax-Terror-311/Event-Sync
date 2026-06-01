@@ -1,0 +1,780 @@
+{
+  "info": {
+    "_postman_id": "event-sync-api",
+    "name": "Event Sync API",
+    "description": "Complete API collection for Event Sync application with all endpoints organized by modules",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "AUTH",
+      "description": "Authentication endpoints",
+      "item": [
+        {
+          "name": "Sign Up",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"name\": \"John Doe\",\n  \"password\": \"SecurePass123!\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/signup",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "signup"
+              ]
+            },
+            "description": "Create a new user account"
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"SecurePass123!\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            },
+            "description": "Login with email and password to get JWT token"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "me"
+              ]
+            },
+            "description": "Get information about the currently authenticated user"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "EVENTS",
+      "description": "Event management endpoints",
+      "item": [
+        {
+          "name": "Get All Events",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/events",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "events"
+              ]
+            },
+            "description": "Retrieve a list of all events"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Event by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/events/{{eventId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "events",
+                "{{eventId}}"
+              ]
+            },
+            "description": "Get details of a specific event by ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Event",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Web3 Conference 2026\",\n  \"start_date\": \"2026-06-15T08:00:00Z\",\n  \"end_date\": \"2026-06-15T17:00:00Z\",\n  \"description\": \"Annual Web3 development conference\",\n  \"location\": \"Tech Hub, Paris\",\n  \"capacity\": 500\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/events",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "events"
+              ]
+            },
+            "description": "Create a new event (admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Event",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Web3 Conference 2026 - Updated\",\n  \"start_date\": \"2026-06-15T08:00:00Z\",\n  \"end_date\": \"2026-06-15T18:00:00Z\",\n  \"description\": \"Annual Web3 development conference - Updated\",\n  \"location\": \"Tech Hub, Paris\",\n  \"capacity\": 600\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/events/{{eventId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "events",
+                "{{eventId}}"
+              ]
+            },
+            "description": "Update an existing event (admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Event",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/events/{{eventId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "events",
+                "{{eventId}}"
+              ]
+            },
+            "description": "Delete an event (admin only)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "SESSIONS",
+      "description": "Session management endpoints",
+      "item": [
+        {
+          "name": "Get All Sessions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/sessions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sessions"
+              ]
+            },
+            "description": "Retrieve a list of all sessions"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Live Sessions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/sessions/live",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sessions",
+                "live"
+              ]
+            },
+            "description": "Get all currently live sessions"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Session by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/sessions/{{sessionId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sessions",
+                "{{sessionId}}"
+              ]
+            },
+            "description": "Get details of a specific session by ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Session",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Introduction to Smart Contracts\",\n  \"description\": \"Learn the basics of smart contract development\",\n  \"start_time\": \"2026-06-15T09:00:00Z\",\n  \"end_time\": \"2026-06-15T10:30:00Z\",\n  \"event_id\": {{eventId}},\n  \"room_id\": {{roomId}},\n  \"speaker_ids\": [{{speakerId}}]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sessions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sessions"
+              ]
+            },
+            "description": "Create a new session (admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Session",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Advanced Smart Contracts\",\n  \"description\": \"Deep dive into smart contract development\",\n  \"start_time\": \"2026-06-15T11:00:00Z\",\n  \"end_time\": \"2026-06-15T12:30:00Z\",\n  \"event_id\": {{eventId}},\n  \"room_id\": {{roomId}},\n  \"speaker_ids\": [{{speakerId}}]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sessions/{{sessionId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sessions",
+                "{{sessionId}}"
+              ]
+            },
+            "description": "Update an existing session (admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Session",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sessions/{{sessionId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sessions",
+                "{{sessionId}}"
+              ]
+            },
+            "description": "Delete a session (admin only)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "SESSION QUESTIONS",
+      "description": "Question management within sessions",
+      "item": [
+        {
+          "name": "Create Question for Session",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"What is the best practice for gas optimization?\",\n  \"user_id\": {{userId}}\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sessions/{{sessionId}}/questions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sessions",
+                "{{sessionId}}",
+                "questions"
+              ]
+            },
+            "description": "Create a new question for a specific session"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "QUESTIONS",
+      "description": "Question management endpoints",
+      "item": [
+        {
+          "name": "Upvote Question",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": {{userId}}\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/questions/{{questionId}}/upvote",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "questions",
+                "{{questionId}}",
+                "upvote"
+              ]
+            },
+            "description": "Upvote a question"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "ROOMS",
+      "description": "Room management endpoints",
+      "item": [
+        {
+          "name": "Get All Rooms",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/rooms",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rooms"
+              ]
+            },
+            "description": "Retrieve a list of all rooms"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Room by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/rooms/{{roomId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rooms",
+                "{{roomId}}"
+              ]
+            },
+            "description": "Get details of a specific room by ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Room",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Amphitheater A\",\n  \"capacity\": 200,\n  \"location\": \"Building 1, Floor 2\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/rooms",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rooms"
+              ]
+            },
+            "description": "Create a new room (admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Room",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Amphitheater A - Updated\",\n  \"capacity\": 250,\n  \"location\": \"Building 1, Floor 2\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/rooms/{{roomId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rooms",
+                "{{roomId}}"
+              ]
+            },
+            "description": "Update an existing room (admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Room",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/rooms/{{roomId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rooms",
+                "{{roomId}}"
+              ]
+            },
+            "description": "Delete a room (admin only)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "ROOM SESSIONS",
+      "description": "Sessions within a specific room",
+      "item": [
+        {
+          "name": "Get Sessions by Room",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/rooms/{{roomId}}/sessions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "rooms",
+                "{{roomId}}",
+                "sessions"
+              ]
+            },
+            "description": "Get all sessions scheduled in a specific room"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "SPEAKERS",
+      "description": "Speaker management endpoints",
+      "item": [
+        {
+          "name": "Get All Speakers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/speakers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "speakers"
+              ]
+            },
+            "description": "Retrieve a list of all speakers"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Speaker by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/speakers/{{speakerId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "speakers",
+                "{{speakerId}}"
+              ]
+            },
+            "description": "Get details of a specific speaker by ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Speaker",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Jane Doe\",\n  \"bio\": \"Expert in blockchain and smart contracts\",\n  \"photo_url\": \"https://example.com/jane.jpg\",\n  \"website\": \"https://janedoe.com\",\n  \"social_links\": {\"twitter\": \"@janedoe\", \"linkedin\": \"janedoe\"}\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/speakers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "speakers"
+              ]
+            },
+            "description": "Create a new speaker (admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Speaker",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Jane Doe\",\n  \"bio\": \"Expert in blockchain, smart contracts, and DeFi\",\n  \"photo_url\": \"https://example.com/jane-updated.jpg\",\n  \"website\": \"https://janedoe.com\",\n  \"social_links\": {\"twitter\": \"@janedoe\", \"linkedin\": \"janedoe\"}\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/speakers/{{speakerId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "speakers",
+                "{{speakerId}}"
+              ]
+            },
+            "description": "Update an existing speaker (admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Speaker",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/speakers/{{speakerId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "speakers",
+                "{{speakerId}}"
+              ]
+            },
+            "description": "Delete a speaker (admin only)"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3001",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string",
+      "description": "JWT token obtained from login"
+    },
+    {
+      "key": "eventId",
+      "value": "",
+      "type": "string",
+      "description": "Event ID"
+    },
+    {
+      "key": "sessionId",
+      "value": "",
+      "type": "string",
+      "description": "Session ID"
+    },
+    {
+      "key": "roomId",
+      "value": "",
+      "type": "string",
+      "description": "Room ID"
+    },
+    {
+      "key": "speakerId",
+      "value": "",
+      "type": "string",
+      "description": "Speaker ID"
+    },
+    {
+      "key": "questionId",
+      "value": "",
+      "type": "string",
+      "description": "Question ID"
+    },
+    {
+      "key": "userId",
+      "value": "",
+      "type": "string",
+      "description": "User ID"
+    }
+  ]
+}
