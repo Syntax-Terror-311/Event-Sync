@@ -1,10 +1,10 @@
-import { API_BASE_URL } from "@/lib/config";
+import { API_BASE_URL } from "../app/lib/config";
 
 export default async function Home() {
-  const res = await fetch(`${API_BASE_URL}/api/ping`);
+  const res = await fetch(`${API_BASE_URL}/ping`);
   const data = await res.json();
 
-  const event = await fetch(`${API_BASE_URL}/api/event`);
+  const event = await fetch(`${API_BASE_URL}/event`);
   const events = await event.json();
   return (
     <>
