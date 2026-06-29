@@ -3,7 +3,7 @@ const BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
 async function apiFetch<T>(path: string, options?: RequestInit): Promise<T> {
   const res = await fetch(`${BASE}${path}`, {
     headers: { 'Content-Type': 'application/json' },
-    cache: 'no-store', // toujours récupérer les données fraîches (pas de cache Next.js)
+    cache: 'no-store',
     ...options,
   });
   if (!res.ok) {
@@ -28,7 +28,6 @@ export const api = {
     apiFetch<Session[]>(`/rooms/${roomId}/sessions`),
 };
 
-// Types
 export interface Event {
   id: number;
   title: string;
